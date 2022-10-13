@@ -18,4 +18,6 @@ const userSchema = mongoose.Schema(
   },
 );
 
+//salt was not considered as it will made this not reusable with other auth tech. salt functionality to seperately implemented with JWT auth
+
 module.exports = mongoose.model("User", userSchema);
