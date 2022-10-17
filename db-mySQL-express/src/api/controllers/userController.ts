@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 
-import {User} from '../../database/models/userModel';
+import {User} from '../../database/entity/userEntity';
 
 //CREATING USER
 export const createUser: RequestHandler = async (rq, rs, next) => {

@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { User } from "./models/userModel";
+import { User } from "./entity/userEntity";
 
 const connection = new Sequelize({
     dialect:"mysql",
