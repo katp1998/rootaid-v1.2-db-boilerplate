@@ -1,7 +1,7 @@
 import { json, urlencoded } from 'body-parser';
 import express from 'express';
-import connection from './database/config';
-import userRoutes from './routes/userRoutes'
+import connection from './database/connection';
+import userRoutes from './api/routes/userRoutes'
 
 const app = express();
 
