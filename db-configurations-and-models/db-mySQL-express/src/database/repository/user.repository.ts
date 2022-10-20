@@ -25,7 +25,8 @@ export const findUser =async (email:any) => {
     if(!userExists){
       try {
         //GENERATE THE HASHED PASSWORD TO BE STORED IN THE DATABASE:
-        const hashedPassword = await bcrypt.hash(password, 10)
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(password, salt)
         
         //CREATE USER:
         const user = await User.create({
