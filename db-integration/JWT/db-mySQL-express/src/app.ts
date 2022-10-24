@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}))
  
 //ADDING USER ROUTES:
-//app.use("/api/users", userRoutes)
+app.use("/api/users", userRoutes)
 
 //SYNCING DATABASE:
 connection.sync().then(() =>{

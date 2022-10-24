@@ -10,11 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.protectedRoute = exports.loginUser = exports.registerUser = void 0;
-const { signUp, logIn, userFind } = require('../../services/userService');
+const user_service_1 = require("../../services/user.service");
+//@ROUTE: /api/users/register
 const registerUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, email, password } = req.body;
-        const data = yield signUp({ name, email, password });
+        const data = yield (0, user_service_1.signUp)({ name, email, password });
         return res.json(data);
     }
     catch (error) {
@@ -22,10 +23,11 @@ const registerUser = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.registerUser = registerUser;
+//@ROUTE: /api/users/login
 const loginUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, password } = req.body;
-        const data = yield logIn({ email, password });
+        const data = yield (0, user_service_1.logIn)({ email, password });
         return res.json(data);
     }
     catch (error) {

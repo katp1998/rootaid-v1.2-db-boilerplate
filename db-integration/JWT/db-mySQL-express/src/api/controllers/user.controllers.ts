@@ -1,14 +1,11 @@
 import { Request, Response , NextFunction } from "express"
-
+import {signUp, logIn} from '../../services/user.service'
 import { JwtPayload } from "jsonwebtoken";
 export interface CustomRequest extends Request {
     user: any | JwtPayload;
    }
 
-const {signUp, logIn, userFind} = require('../../services/userService')
-
-
-
+//@ROUTE: /api/users/register
 export const registerUser = async (req :Request,res : Response,next : NextFunction) =>{
         try {
             const {name,email,password} = req.body
@@ -19,6 +16,7 @@ export const registerUser = async (req :Request,res : Response,next : NextFuncti
         }
     }
 
+//@ROUTE: /api/users/login
 export const loginUser = async (req : Request,res : Response,next : NextFunction) =>{
         try {
             const {email,password} = req.body

@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const connection_1 = __importDefault(require("./database/connection"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const user_routes_1 = __importDefault(require("./api/routes/user.routes"));
 //IMPORTING DOTENV:
 dotenv_1.default.config();
 //GETTING PORT FROM .ENV FILE:
@@ -15,7 +16,7 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 //ADDING USER ROUTES:
-//app.use("/api/users", userRoutes)
+app.use("/api/users", user_routes_1.default);
 //SYNCING DATABASE:
 connection_1.default.sync().then(() => {
     console.log("Database connected successfully");
