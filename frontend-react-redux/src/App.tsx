@@ -1,9 +1,33 @@
 import React from 'react';
 import './App.css';
+import { Container } from 'react-bootstrap';
+import {BrowserRouter as Router, Route } from 'react-router-dom'
+
+//IMPORTING COMPONENTS:
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+//IMPORTING PAGES:
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+
 
 function App() {
   return (
-    <h1>react app is working now!</h1>    
+    <>
+    <Router>
+      <Header />
+      <main>
+        <Container>
+          <Route path='/' element = {<HomePage />}></Route>
+          <Route path='/login' element = {<LoginPage />}></Route>
+          <Route path='/register' element = {<RegisterPage />}></Route>
+        </Container>
+      </main>
+      <Footer />
+    </Router>
+    </>    
   );
 }
 
