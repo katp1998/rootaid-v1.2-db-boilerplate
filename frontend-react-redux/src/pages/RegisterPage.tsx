@@ -16,18 +16,7 @@ function RegisterPage() {
   const submitHandler = async(e:SyntheticEvent) =>{
     e.preventDefault()
 
-    /* INTERACTION WITH THE BACKEND REQUIRED TO BE INSERTED HERE:  
-    await fetch('http://localhost:8000/api/register', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      credentials:'include'
-      body:JSON.stringify({
-        dbname: name,
-        dbemail: email,
-        dbpassword: password
-      })
-    })
-    **/
+    /* INTERACTION WITH THE BACKEND REQUIRED TO BE INSERTED HERE: **/
 
     console.log("New account Submitted")
 

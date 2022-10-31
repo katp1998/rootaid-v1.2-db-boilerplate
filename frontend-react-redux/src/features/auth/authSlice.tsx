@@ -1,51 +1,68 @@
-import axios from 'axios'
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import {register, login} from './authService'
 
-type User = {
-  name: string
-  email: string
-  password: string
-}
-type InitialState = {
-  loading: boolean
-  users: User[]
-  error: string
-}
-const initialState: InitialState = {
-  loading: false,
-  users: [],
-  error: ''
+//get user from localStorage:
+//const user = JSON.parse(localStorage.getItem("user")); //need to parse cz localStorage can have only strings
+
+
+const initialState = {
+    //user: user ? user : null,
+    isError: false,
+    isSuccess: false,
+    isLoading: false,
+    message: "",
 }
 
-// Generates pending, fulfilled and rejected action types
-export const login = createAsyncThunk('user/login', () => {
-  return axios
-    .get('') //add url here
-    .then(response => response.data)
-})
+export const authSlice = createSlice({
+    name: "auth",
+    initialState,
+    reducers: {
+      reset: (state) => {
+        state.isError = false;
+        state.isSuccess = false;
+        state.isLoading = false;
+        state.message = "";
+      },
+    },
+    extraReducers: (builder) => {
+      builder
+        .addCase(register.pending, (state) => {
+          state.isLoading = true;
+        })
+        .addCase(register.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.isSuccess = true;
+          state.message = "Registration Successful"
+          //state.user = action.payload;
 
-const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {},
-  extraReducers: builder => {
-    builder.addCase(login.pending, state => {
-      state.loading = true
-    })
-    builder.addCase(
-        login.fulfilled,
-      (state, action: PayloadAction<User[]>) => {
-        state.loading = false
-        state.users = action.payload
-        state.error = ''
-      }
-    )
-    builder.addCase(login.rejected, (state, action) => {
-      state.loading = false
-      state.users = []
-      state.error = action.error.message || 'Something went wrong'
-    })
-  }
-})
+        })
+        .addCase(register.rejected, (state, action) => {
+          state.isLoading = false;
+          state.isSuccess = false;
+          state.isError = true;
+          state.message = "Registration failed"
+          //state.user = null; //as something went wrong with the registration
+          
+        })
+        .addCase(login.pending, (state) => {
+          state.isLoading = true;
+        })
+        .addCase(login.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.isSuccess = true;
+          state.message = "Login successful"
+          //state.user = action.payload;
+        })
+        .addCase(login.rejected, (state, action) => {
+          state.isLoading = false;
+          state.isSuccess = false;
+          state.isError = true;
+          state.message = "Login failed"
+          //state.user = null;
 
-export default userSlice.reducer
+        });
+    },
+  });
+
+export const { reset } = authSlice.actions;
+export default authSlice.reducer;
