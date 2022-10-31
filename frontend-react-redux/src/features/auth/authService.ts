@@ -4,19 +4,19 @@ import axios from 'axios'
 
 const API_URL = "http://localhost:8000/api/user/"
 
-export const register = createAsyncThunk<User>("/register", async (data, thunkAPI) => {
+export const register = createAsyncThunk("/register", async (data, thunkAPI) => {
     try {
         const response = await axios.post(API_URL + "register", data)
-        return response.data
+        return response
     } catch (error) {
         return thunkAPI.rejectWithValue(error);
     }
 })
 
-export const login = createAsyncThunk<User>("/login" , async (data, thunkAPI) => {
+export const login = createAsyncThunk("/login" , async (data, thunkAPI) => {
     try{
         const response = await axios.post(API_URL + "login", data);
-        return response.data
+        return response
     }catch(error){
         return thunkAPI.rejectWithValue(error);
     }

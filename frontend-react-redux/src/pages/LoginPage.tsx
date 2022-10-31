@@ -1,6 +1,9 @@
-import React, {SyntheticEvent, useState} from 'react'
+import React, {SyntheticEvent, useEffect, useState} from 'react'
 import {Card, Button, Form} from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import {reset} from '../features/auth/authSlice'
+import { login } from '../features/auth/authService';
 
 //IMPORTING COMPONENTS:
 import FormContainer from '../components/FormContainer'
@@ -8,15 +11,37 @@ import FormContainer from '../components/FormContainer'
 function LoginPage() {
 
   let navigate = useNavigate();
+  let dispatch = useDispatch();
 
   //CONFIGURING STATES:
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
 
+  ///states from authSlice
+  const {isError, isSuccess, isLoading, message} = useSelector((state) => state.auth)
+
+  //monitor states
+  useEffect(()=>{
+    //if isError state = true
+    if(isError){
+      console.log(message)
+    }
+    //if isSuccess {and user} states = true
+//if(user){navigate('/')} --> does not work
+    if(isSuccess){
+      navigate('/')
+    }
+
+    dispatch(reset())
+  }, [isError, isSuccess, message, navigate, dispatch])
+
+
   const submitHandler = (e:SyntheticEvent) =>{
     e.preventDefault()
 
     /* INTERACTION WITH THE BACKEND REQUIRED TO BE INSERTED HERE **/
+    const userData = { email, password}
+    dispatch(login(userData))
 
     console.log("Submitted")
 
