@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { Container } from 'react-bootstrap';
-import {BrowserRouter as Router, Route } from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 
 //IMPORTING COMPONENTS:
 import Header from './components/Header';
@@ -20,9 +21,11 @@ function App() {
       <Header />
       <main>
         <Container>
-          <Route path='/' element = {<HomePage />}></Route>
-          <Route path='/login' element = {<LoginPage />}></Route>
-          <Route path='/register' element = {<RegisterPage />}></Route>
+          <Routes>
+          <Route path='/' element={<HomePage />}></Route>
+          <Route path='/login' element={<LoginPage />}></Route>
+          <Route path='/register' element={<RegisterPage />}></Route>
+          </Routes>
         </Container>
       </main>
       <Footer />

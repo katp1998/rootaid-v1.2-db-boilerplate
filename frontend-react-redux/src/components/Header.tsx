@@ -5,7 +5,7 @@ function Header() {
   return (
     <><Navbar bg="light" variant="light">
     <Container>
-      <Navbar.Brand href="#home">REACT-REDUX FRONTEND APPLICATION</Navbar.Brand>
+      <Navbar.Brand href="/">REACT-REDUX FRONTEND APPLICATION</Navbar.Brand>
       <Nav className="d-flex">
         <Nav.Link href="/login">Login</Nav.Link>
         <Nav.Link href="/register">Register</Nav.Link>
