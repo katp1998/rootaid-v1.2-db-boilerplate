@@ -27,7 +27,7 @@ const LoginPage = () => {
           <Typography 
           variant='h3'
           padding= {3}
-          textAlign = "center">LOGIN</Typography>
+          textAlign = "center">LOGIN</Typography>  
           <TextField label="Email" variant="outlined" multiline placeholder='Enter email address' margin='normal' fullWidth color='error' />
           <TextField type="password" label="Password" variant="outlined" multiline placeholder='Enter password' margin="normal" fullWidth color='error' id="outlined-password-input" />
           <Button variant ="contained" color="error" size="large">Login</Button>  
